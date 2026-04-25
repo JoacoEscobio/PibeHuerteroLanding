@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Servicios | Sitopia</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <a href="index.html" class="logo">PIBE HUERTERO</a>
+            <div class="links">
+                <a href="cursos.html">Cursos</a>
+                <a href="tienda.html">Tienda</a>
+                <a href="servicios.html" class="active">Servicios</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero services-hero">
+        <h1>Servicios para Empresas</h1>
+        <p>Diseñamos soluciones ambientales regenerativas.</p>
+    </section>
+
+    <section class="services-container">
+        <div id="services" class="services-grid"></div>
+    </section>
+
+    <section class="cta-section">
+        <h2>¿Querés implementar un proyecto regenerativo?</h2>
+        <button onclick="contact()">Contactanos</button>
+    </section>
+
+    <script>
+
+        function contact() {
+            alert("Implementar formulario o redirección a contacto.");
+        }
+
+        fetch("http://localhost:3000/api/services")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("services");
+                container.innerHTML = "";
+
+                data.forEach(s => {
+                    container.innerHTML += `
+        <div class="service-card">
+          <img src="${s.image || 'https://via.placeholder.com/400x250'}" alt="${s.title}">
+          <div class="service-content">
+            <h3>${s.title}</h3>
+            <p>${s.description}</p>
+          </div>
+        </div>
+      `;
+                });
+            });
+
+    </script>
+
+</body>
+
+</html>

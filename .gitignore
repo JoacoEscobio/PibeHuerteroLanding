@@ -1,0 +1,28 @@
+# --- Basura de Sistema (Lo que ya tenías) ---
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# --- Seguridad y Base de Datos ---
+# No subas archivos de configuración que tengan tu contraseña de MySQL
+.env
+config.php
+config.js
+# Si exportas tu base de datos, el archivo .sql sí se sube, 
+# pero evita subir archivos temporales o logs
+*.log
+*.sql.bak
+
+# --- Desarrollo Web ---
+# Si usas Node.js para el backend, esto es OBLIGATORIO
+node_modules/
+dist/
+.cache/
+
+# --- Archivos de Editores ---
+.vscode/
+.idea/
+*.swp

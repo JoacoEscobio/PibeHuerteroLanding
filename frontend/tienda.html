@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda | Sitopia</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <a href="index.html" class="logo">SITOPIA</a>
+            <div class="links">
+                <a href="cursos.html">Cursos</a>
+                <a href="tienda.html" class="active">Tienda</a>
+                <a href="servicios.html">Servicios</a>
+            </div>
+            <div class="cart">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <h1>Tienda</h1>
+        <p>Productos sustentables para regenerar tu entorno.</p>
+    </section>
+
+    <section class="grid-container">
+        <div id="products" class="grid"></div>
+    </section>
+
+    <script>
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function updateCartCount() {
+            document.getElementById("cart-count").innerText = cart.length;
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        fetch("http://localhost:3000/api/products")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("products");
+                container.innerHTML = "";
+
+                data.forEach(p => {
+                    container.innerHTML += `
+        <div class="card product-card">
+          <img src="${p.image || 'https://via.placeholder.com/300'}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+          <div class="price">$${p.price}</div>
+          <button onclick='addToCart(${JSON.stringify(p)})'>
+            Agregar al carrito
+          </button>
+        </div>
+      `;
+                });
+
+                updateCartCount();
+            });
+
+    </script>
+
+</body>
+
+</html>

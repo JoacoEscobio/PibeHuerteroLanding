@@ -1,0 +1,18 @@
+<h1>Cursos</h1>
+<div id="courses"></div>
+
+<script>
+    fetch("http://localhost:3000/api/courses")
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById("courses");
+            data.forEach(c => {
+                container.innerHTML += `
+        <div class="card">
+          <h3>${c.title}</h3>
+          <p>${c.description}</p>
+          <strong>$${c.price}</strong>
+        </div>`;
+            });
+        });
+</script>
