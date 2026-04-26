@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Huerta Privada - Pibe Huertero</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) {
+            // Si no hay token en el navegador, lo rebotamos al login
+            window.location.replace('login.html');
+        }
+    </script>
+</head>
+
+<body>
+    <main style="padding: 40px 20px; text-align: center; min-height: 70vh;">
+        <h1 id="saludo-usuario">¡Hola! Preparando tu tierra...</h1>
+        <p>Acá vas a ver todos los cursos que compraste.</p>
+
+        <div id="mis-videos" style="margin-top: 30px; padding: 20px; border: 2px dashed #2d5a27; border-radius: 10px;">
+            <p>*(Próximamente conectaremos esto con la base de datos para traer tus videos)*</p>
+        </div>
+
+        <button id="btn-cerrar-sesion" class="btn-primary" style="margin-top: 40px; background-color: #d9534f;">Cerrar
+            Sesión</button>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Recuperamos los datos del usuario que guardamos en auth.js
+            const usuarioString = localStorage.getItem('usuario');
+            if (usuarioString) {
+                const usuario = JSON.parse(usuarioString);
+                // Personalizamos el saludo con su nombre
+                document.getElementById('saludo-usuario').innerText = `¡Bienvenido a tu huerta, ${usuario.nombre}!`;
+            }
+
+            // 2. Lógica para Cerrar Sesión
+            const btnCerrar = document.getElementById('btn-cerrar-sesion');
+            if (btnCerrar) {
+                btnCerrar.addEventListener('click', () => {
+                    // Borramos la llave y los datos del navegador
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('usuario');
+                    // Lo mandamos de vuelta al inicio
+                    window.location.replace('login.html');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
