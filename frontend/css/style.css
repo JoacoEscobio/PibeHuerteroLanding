@@ -123,3 +123,54 @@ button:hover {
     padding: 60px;
     background: #f1f8e9;
 }
+
+/* Estilos para las páginas de Auth */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    background-color: #f4f7f4;
+    /* Un verde muy clarito, tipo huertero */
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2d5a27;
+    /* Verde oscuro */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.mensaje-alerta {
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    font-size: 0.85em;
+}
